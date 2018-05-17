@@ -4,7 +4,9 @@
   "description": "A dynamic scoreboard with a simple stopwatch for playing board or card games.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode development"
   },
   "repository": {
     "type": "git",
