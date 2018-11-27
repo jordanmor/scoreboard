@@ -37,10 +37,13 @@ class Counter extends React.Component {
 }
 
 const Player = props => {
+  const { name, id } = props.player;
   return (
     <div className='player'>
       <span className="player-name">
-        {props.name}
+        <button className="remove-player" onClick={ () => props.removePlayer(id)}
+        >✖</button>
+        {name}
       </span>
       <Counter />
     </div>
@@ -70,6 +73,12 @@ class App extends React.Component {
     ]
   };
 
+  handleRemovePlayer = id => {
+    this.setState( prevState => ({
+      players: prevState.players.filter( p => p.id !== id)
+    }));
+  }
+
   render() {
     return (
       <div className="scoreboard">
@@ -77,7 +86,8 @@ class App extends React.Component {
         {this.state.players.map(player => 
           <Player 
             key={player.id.toString()}
-            name={player.name}
+            player={player}
+            removePlayer={this.handleRemovePlayer}
           />
         )}
       </div>
