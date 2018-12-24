@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from './counter';
+import Icon from './icon';
 
 const Player = props => {
 
@@ -9,10 +10,16 @@ const Player = props => {
   return (
     <div className='player'>
       <span className="player-name">
+
         <button className="remove-player" onClick={ () => props.removePlayer(id)}
         >✖</button>
+
+        <Icon />
+
         {name}
+
       </span>
+      
       <Counter 
         score={score}
         index={props.index}
