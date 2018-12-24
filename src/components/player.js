@@ -14,12 +14,12 @@ const Player = props => {
         <button className="remove-player" onClick={ () => props.removePlayer(id)}
         >✖</button>
 
-        <Icon />
+        <Icon isHighScore={props.isHighScore} />
 
         {name}
 
       </span>
-      
+
       <Counter 
         score={score}
         index={props.index}
@@ -37,7 +37,8 @@ Player.propTypes = {
   }).isRequired,
   index: PropTypes.number,
   changeScore: PropTypes.func,
-  removePlayer: PropTypes.func
+  removePlayer: PropTypes.func,
+  isHighScore: PropTypes.bool
 };
 
 export default Player;
