@@ -5,7 +5,7 @@ import Icon from './icon';
 
 const Player = props => {
 
-  const { name, id, score } = props.player;
+  const { name, id, score } = props;
 
   return (
     <div className='player'>
@@ -30,11 +30,9 @@ const Player = props => {
 }
 
 Player.propTypes = {
-  player: PropTypes.shape({
-    name: PropTypes.String,
-    id: PropTypes.number,
-    score: PropTypes.number
-  }).isRequired,
+  name: PropTypes.string,
+  id: PropTypes.number,
+  score: PropTypes.number,
   index: PropTypes.number,
   changeScore: PropTypes.func,
   removePlayer: PropTypes.func,
