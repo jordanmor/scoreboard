@@ -14,10 +14,10 @@ class AddPlayerForm extends Component {
 
     return ( 
       <Consumer>
-        { context => {
+        { ({ actions }) => {
           const handleSubmit = e => {
             e.preventDefault();
-            context.actions.addPlayer(this.state.value);
+            actions.addPlayer(this.state.value);
             this.setState({value: ''});
           }
 
