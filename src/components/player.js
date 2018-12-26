@@ -1,29 +1,40 @@
 import React from 'react';
+import { Consumer } from './Context';
 import PropTypes from 'prop-types';
 import Counter from './counter';
 import Icon from './icon';
 
 const Player = props => {
 
-  const { name, id, score } = props;
+  const { 
+    name, 
+    id, 
+    score, 
+    index, 
+    isHighScore 
+  } = props;
 
   return (
     <div className='player'>
-      <span className="player-name">
 
-        <button className="remove-player" onClick={ () => props.removePlayer(id)}
-        >✖</button>
+      <Consumer>
+        { context => (
+          <span className="player-name">
 
-        <Icon isHighScore={props.isHighScore} />
+            <button className="remove-player" onClick={ () => context.actions.removePlayer(id)}
+            >✖</button>
 
-        {name}
+            <Icon isHighScore={isHighScore} />
 
-      </span>
+            {name}
+
+          </span>
+        )}
+      </Consumer>
 
       <Counter 
         score={score}
-        index={props.index}
-        changeScore={props.changeScore}
+        index={index}
       />
     </div>
   );
@@ -34,8 +45,6 @@ Player.propTypes = {
   id: PropTypes.number,
   score: PropTypes.number,
   index: PropTypes.number,
-  changeScore: PropTypes.func,
-  removePlayer: PropTypes.func,
   isHighScore: PropTypes.bool
 };
 
