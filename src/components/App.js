@@ -83,12 +83,11 @@ class App extends Component {
     const highScore = this.getHighScore();
 
     return (
-      <Provider>
+      <Provider value={this.state.players}>
         <div className="scoreboard">
-          <Header 
-            title="Scoreboard" 
-            players={this.state.players}
-          />
+
+          <Header />
+
           {this.state.players.map((player, index) => 
             <Player 
               key={player.id.toString()}
@@ -99,7 +98,9 @@ class App extends Component {
               isHighScore={highScore === player.score}
             />
           )}
+
           <AddPlayerForm addPlayer={this.handleAddPlayer}/>
+          
         </div>
       </Provider>
     );
