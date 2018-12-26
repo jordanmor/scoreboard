@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Consumer } from './Context';
 
 class AddPlayerForm extends Component {
   state = { 
@@ -9,28 +10,34 @@ class AddPlayerForm extends Component {
     this.setState({ value: e.target.value });
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.addPlayer(this.state.value);
-    this.setState({value: ''});
-  }
-
   render() { 
 
     return ( 
-      <form onSubmit={this.handleSubmit}>
-        <input 
-          type="text"
-          placeholder="Enter a player's name"
-          onChange={this.handleValueChange}
-          value={this.state.value}
-        />
+      <Consumer>
+        { context => {
+          const handleSubmit = e => {
+            e.preventDefault();
+            context.actions.addPlayer(this.state.value);
+            this.setState({value: ''});
+          }
 
-        <input 
-          type="submit"
-          value="Add Player"
-        />
-      </form>
+          return (
+            <form onSubmit={handleSubmit}>
+              <input 
+                type="text"
+                placeholder="Enter a player's name"
+                onChange={this.handleValueChange}
+                value={this.state.value}
+              />
+      
+              <input 
+                type="submit"
+                value="Add Player"
+              />
+            </form>
+          );
+        }}
+      </Consumer>
      );
   }
 }
